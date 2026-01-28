@@ -70,28 +70,47 @@
         }
         
         .container {
-            max-width: 800px;
+            max-width: 500px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px 5px;
             position: relative;
             z-index: 1;
         }
         
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 30px;
-            background: rgba(0, 255, 0, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(0, 255, 0, 0.1);
-        }
-        
-        .wolf-icon {
-            font-size: 60px;
-            color: var(--primary-green);
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-        }
+     .header {
+    text-align: center;
+    margin-bottom: 5px; /* Reduced from 10px */
+    padding: 8px; /* Reduced from 10px */
+    background: rgba(0, 255, 0, 0.05);
+    border-radius: 12px; /* Reduced from 20px */
+    border: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+.wolf-icon {
+    font-size: 25px; /* Reduced from 30px */
+    color: var(--primary-green);
+    margin-bottom: 10px; /* Reduced from 20px */
+    animation: pulse 2s infinite;
+}
+
+.header h1 {
+    font-size: 2rem; /* Reduced from original 2.8rem */
+    background: linear-gradient(45deg, var(--primary-green), var(--dark-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 5px; /* Reduced spacing */
+    letter-spacing: 0.5px; /* Reduced from 1px */
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.subtitle {
+    color: var(--light-gray);
+    font-size: 0.85rem; /* Reduced from original 1rem */
+    line-height: 1.3; /* Tighter line height */
+    max-width: 400px; /* Slightly narrower */
+    margin: 0 auto;
+}
         
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
@@ -128,13 +147,13 @@
         
         .card-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
         
         .card-header h2 {
             font-size: 2rem;
             color: var(--primary-green);
-            margin-bottom: 10px;
+            margin-bottom: 1px;
         }
         
         .card-header p {
@@ -143,13 +162,13 @@
         }
         
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
         
         .form-group label {
             display: block;
             color: var(--primary-green);
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             font-weight: 600;
             font-size: 1.1rem;
         }
@@ -186,7 +205,7 @@
         
         .deploy-button {
             width: 100%;
-            padding: 18px;
+            padding: 15px;
             background: linear-gradient(45deg, var(--dark-green), var(--primary-green));
             color: var(--black);
             border: none;
@@ -198,8 +217,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 1px;
+            margin-top: 1px;
         }
         
         .deploy-button:hover {
@@ -242,6 +261,7 @@
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
+                
             }
             
             .header h1 {
@@ -271,7 +291,7 @@
         <div class="deploy-card">
             <div class="card-header">
                 <h2>Deploy to Heroku</h2>
-                <p>Enter your GitHub username to start deployment</p>
+                <p>Enter your GitHub username to start</p>
             </div>
             
             <form id="deployForm">
@@ -294,7 +314,7 @@
                 
                 <button type="submit" class="deploy-button" id="deployBtn">
                     <i class="fab fa-heroku heroku-icon"></i>
-                    Deploy WOLFBOT to Heroku
+                    Deploy WOLFBOT
                 </button>
             </form>
             
