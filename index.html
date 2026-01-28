@@ -6,6 +6,17 @@
     <title>WOLFBOT | Deploy to Heroku</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-green: #00ff00;
+            --dark-green: #00cc00;
+            --light-green: #33ff33;
+            --black: #000000;
+            --dark-gray: #111111;
+            --gray: #222222;
+            --light-gray: #333333;
+            --white: #ffffff;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -14,11 +25,12 @@
         }
         
         body {
-            background-color: #0a0a0a;
-            color: #ffffff;
+            background-color: var(--black);
+            color: var(--white);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            line-height: 1.6;
         }
         
         #particles {
@@ -33,7 +45,7 @@
         
         .particle {
             position: absolute;
-            background-color: #00ff88;
+            background-color: var(--primary-green);
             border-radius: 50%;
             pointer-events: none;
             animation: float 20s infinite linear;
@@ -69,14 +81,14 @@
             text-align: center;
             margin-bottom: 40px;
             padding: 30px;
-            background: rgba(0, 255, 136, 0.05);
+            background: rgba(0, 255, 0, 0.05);
             border-radius: 20px;
-            border: 1px solid rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.1);
         }
         
         .wolf-icon {
             font-size: 60px;
-            color: #00ff88;
+            color: var(--primary-green);
             margin-bottom: 20px;
             animation: pulse 2s infinite;
         }
@@ -88,16 +100,17 @@
         
         .header h1 {
             font-size: 3.5rem;
-            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            background: linear-gradient(45deg, var(--primary-green), var(--dark-green));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             margin-bottom: 15px;
             letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
         }
         
         .subtitle {
-            color: #aaa;
+            color: var(--light-gray);
             font-size: 1.1rem;
             line-height: 1.6;
             max-width: 600px;
@@ -105,11 +118,11 @@
         }
         
         .deploy-card {
-            background: rgba(10, 10, 10, 0.8);
+            background: rgba(17, 17, 17, 0.9);
             border-radius: 15px;
             padding: 40px;
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.1);
             backdrop-filter: blur(10px);
         }
         
@@ -120,12 +133,12 @@
         
         .card-header h2 {
             font-size: 2rem;
-            color: #00ff88;
+            color: var(--primary-green);
             margin-bottom: 10px;
         }
         
         .card-header p {
-            color: #888;
+            color: var(--light-gray);
             font-size: 1rem;
         }
         
@@ -135,7 +148,7 @@
         
         .form-group label {
             display: block;
-            color: #00ff88;
+            color: var(--primary-green);
             margin-bottom: 10px;
             font-weight: 600;
             font-size: 1.1rem;
@@ -148,18 +161,18 @@
         .input-wrapper input {
             width: 100%;
             padding: 15px 20px 15px 50px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 255, 136, 0.3);
+            background: var(--dark-gray);
+            border: 2px solid var(--primary-green);
             border-radius: 10px;
-            color: white;
+            color: var(--white);
             font-size: 1rem;
             transition: all 0.3s ease;
         }
         
         .input-wrapper input:focus {
             outline: none;
-            border-color: #00ff88;
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+            border-color: var(--light-green);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
         }
         
         .github-icon {
@@ -167,15 +180,15 @@
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: #00ff88;
+            color: var(--primary-green);
             font-size: 1.5rem;
         }
         
         .deploy-button {
             width: 100%;
             padding: 18px;
-            background: linear-gradient(45deg, #00cc6a, #00ff88);
-            color: black;
+            background: linear-gradient(45deg, var(--dark-green), var(--primary-green));
+            color: var(--black);
             border: none;
             border-radius: 10px;
             font-size: 1.2rem;
@@ -190,8 +203,9 @@
         }
         
         .deploy-button:hover {
+            background: linear-gradient(45deg, var(--primary-green), var(--light-green));
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.3);
         }
         
         .deploy-button:disabled {
@@ -216,10 +230,10 @@
         .info-text {
             margin-top: 25px;
             padding: 15px;
-            background: rgba(0, 255, 136, 0.05);
+            background: rgba(0, 255, 0, 0.05);
             border-radius: 10px;
-            border-left: 4px solid #00ff88;
-            color: #aaa;
+            border-left: 4px solid var(--primary-green);
+            color: var(--light-gray);
             font-size: 0.95rem;
             line-height: 1.5;
         }
@@ -250,7 +264,7 @@
             </div>
             <h1>WOLFBOT</h1>
             <p class="subtitle">
-                Professional WhatsApp bot with advanced features. Deploy in seconds.
+                Advanced Bot by Silent Wolf
             </p>
         </div>
         
