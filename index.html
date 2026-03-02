@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WOLFBOT | Deploy to Heroku / WolfHost</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>WOLFBOT | Deploy Options</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -15,6 +15,15 @@
             --gray: #222222;
             --light-gray: #333333;
             --white: #ffffff;
+            
+            /* Platform Colors */
+            --heroku-purple: #6762a6;
+            --heroku-light: #9b4dff;
+            --railway-purple: #7C3AED;
+            --render-blue: #46E3B7;
+            --replit-blue: #808bed;
+            --replit-dark: #0E1525;
+            --wolfhost-green: #00ff00;
         }
         
         * {
@@ -28,9 +37,12 @@
             background-color: var(--black);
             color: var(--white);
             min-height: 100vh;
-            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            line-height: 1.6;
+            line-height: 1.4;
+            padding: 10px;
         }
         
         #particles {
@@ -52,44 +64,34 @@
         }
         
         @keyframes float {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% {
-                transform: translate(100px, 50px) rotate(90deg);
-            }
-            50% {
-                transform: translate(50px, 100px) rotate(180deg);
-            }
-            75% {
-                transform: translate(-50px, 50px) rotate(270deg);
-            }
-            100% {
-                transform: translate(0, 0) rotate(360deg);
-            }
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 50px) rotate(90deg); }
+            50% { transform: translate(50px, 100px) rotate(180deg); }
+            75% { transform: translate(-50px, 50px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
         }
         
         .container {
-            max-width: 500px;
+            width: 100%;
+            max-width: 550px;
             margin: 0 auto;
-            padding: 20px 5px;
             position: relative;
             z-index: 1;
         }
         
         .header {
             text-align: center;
-            margin-bottom: 5px;
-            padding: 8px;
+            margin-bottom: 15px;
+            padding: 12px 10px;
             background: rgba(0, 255, 0, 0.05);
             border-radius: 12px;
             border: 1px solid rgba(0, 255, 0, 0.1);
         }
 
         .wolf-icon {
-            font-size: 25px;
+            font-size: 28px;
             color: var(--primary-green);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             animation: pulse 2s infinite;
         }
 
@@ -99,17 +101,15 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             letter-spacing: 0.5px;
             text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
         }
 
         .subtitle {
             color: var(--light-gray);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             line-height: 1.3;
-            max-width: 400px;
-            margin: 0 auto;
         }
         
         @keyframes pulse {
@@ -117,31 +117,29 @@
             50% { transform: scale(1.1); }
         }
         
-        /* Keeping original h1 size for larger screens via media query if needed, but header uses 2rem now */
-        
         .deploy-card {
-            background: rgba(17, 17, 17, 0.9);
-            border-radius: 15px;
-            padding: 40px;
+            background: rgba(17, 17, 17, 0.95);
+            border-radius: 16px;
+            padding: 20px 18px;
             border: 1px solid rgba(0, 255, 0, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 255, 0, 0.1);
             backdrop-filter: blur(10px);
         }
         
         .card-header {
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         
         .card-header h2 {
-            font-size: 2rem;
+            font-size: 1.6rem;
             color: var(--primary-green);
-            margin-bottom: 1px;
+            margin-bottom: 3px;
         }
         
         .card-header p {
             color: var(--light-gray);
-            font-size: 1rem;
+            font-size: 0.85rem;
         }
         
         .form-group {
@@ -151,9 +149,9 @@
         .form-group label {
             display: block;
             color: var(--primary-green);
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
         }
         
         .input-wrapper {
@@ -162,83 +160,110 @@
         
         .input-wrapper input {
             width: 100%;
-            padding: 15px 20px 15px 50px;
+            padding: 12px 15px 12px 45px;
             background: var(--dark-gray);
-            border: 2px solid var(--primary-green);
+            border: 1.5px solid var(--primary-green);
             border-radius: 10px;
             color: var(--white);
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
         }
         
         .input-wrapper input:focus {
             outline: none;
             border-color: var(--light-green);
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+            box-shadow: 0 0 12px rgba(0, 255, 0, 0.2);
         }
         
         .github-icon {
             position: absolute;
-            left: 15px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--primary-green);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
         
-        /* New dual button layout */
-        .button-group {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-            flex-wrap: wrap;
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 15px 0 5px;
         }
         
-        .deploy-button {
-            flex: 1 1 0;
-            min-width: 160px;
-            padding: 15px 10px;
-            background: linear-gradient(45deg, var(--dark-green), var(--primary-green));
-            color: var(--black);
+        .platform-button {
+            padding: 12px 6px;
             border: none;
             border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            font-size: 0.9rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
+            color: white;
+            min-width: 0;
+            word-break: keep-all;
+            white-space: nowrap;
         }
         
-        .deploy-button.heroku-btn {
-            background: linear-gradient(45deg, #6a0dad, #9b4dff); /* Purple shades for Heroku distinction */
+        .platform-button i {
+            font-size: 1rem;
         }
         
-        .deploy-button.wolfhost-btn {
-            background: linear-gradient(45deg, var(--dark-green), var(--primary-green));
+        /* Platform-specific colors */
+        .heroku-btn {
+            background: linear-gradient(135deg, #6762a6, #9b4dff);
+        }
+        .heroku-btn:hover {
+            background: linear-gradient(135deg, #9b4dff, #b87cff);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(103, 98, 166, 0.4);
         }
         
-        .deploy-button:hover:not(:disabled) {
-            background: linear-gradient(45deg, var(--primary-green), var(--light-green));
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.3);
+        .wolfhost-btn {
+            background: linear-gradient(135deg, #00aa00, #00ff00);
+        }
+        .wolfhost-btn:hover {
+            background: linear-gradient(135deg, #00ff00, #88ff88);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 255, 0, 0.4);
         }
         
-        .deploy-button.heroku-btn:hover:not(:disabled) {
-            background: linear-gradient(45deg, #9b4dff, #b87cff);
-            box-shadow: 0 10px 20px rgba(155, 77, 255, 0.3);
+        .railway-btn {
+            background: linear-gradient(135deg, #0B1120, #7C3AED);
+        }
+        .railway-btn:hover {
+            background: linear-gradient(135deg, #7C3AED, #9F67FF);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(124, 58, 237, 0.4);
         }
         
-        .deploy-button:disabled {
+        .render-btn {
+            background: linear-gradient(135deg, #1F2937, #46E3B7);
+        }
+        .render-btn:hover {
+            background: linear-gradient(135deg, #46E3B7, #7AFFD9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(70, 227, 183, 0.4);
+        }
+        
+        .replit-btn {
+            background: linear-gradient(135deg, #0E1525, #808bed);
+            grid-column: span 2;
+        }
+        .replit-btn:hover {
+            background: linear-gradient(135deg, #808bed, #a0b0ff);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(128, 139, 237, 0.4);
+        }
+        
+        .platform-button:disabled {
             opacity: 0.7;
             cursor: not-allowed;
             transform: none;
-        }
-        
-        .heroku-icon, .wolf-icon-btn {
-            font-size: 1.3rem;
         }
         
         .fa-spin {
@@ -251,36 +276,106 @@
         }
         
         .info-text {
-            margin-top: 25px;
-            padding: 15px;
+            margin-top: 18px;
+            padding: 12px;
             background: rgba(0, 255, 0, 0.05);
             border-radius: 10px;
-            border-left: 4px solid var(--primary-green);
+            border-left: 3px solid var(--primary-green);
             color: var(--light-gray);
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 0.8rem;
+            line-height: 1.4;
         }
         
-        /* Responsive */
-        @media (max-width: 600px) {
+        .info-text i {
+            color: var(--primary-green);
+            margin-right: 4px;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+                align-items: flex-start;
+            }
+            
             .container {
-                padding: 15px;
+                max-width: 100%;
+            }
+            
+            .header {
+                padding: 10px 8px;
+                margin-bottom: 12px;
             }
             
             .header h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+            
+            .wolf-icon {
+                font-size: 24px;
             }
             
             .deploy-card {
-                padding: 25px;
+                padding: 15px 12px;
             }
             
-            .button-group {
-                flex-direction: column;
+            .card-header h2 {
+                font-size: 1.4rem;
             }
             
-            .deploy-button {
-                width: 100%;
+            .card-header p {
+                font-size: 0.8rem;
+            }
+            
+            .form-group label {
+                font-size: 0.85rem;
+                margin-bottom: 4px;
+            }
+            
+            .input-wrapper input {
+                padding: 10px 12px 10px 40px;
+                font-size: 0.9rem;
+            }
+            
+            .github-icon {
+                left: 10px;
+                font-size: 1.2rem;
+            }
+            
+            .platform-grid {
+                gap: 6px;
+                margin: 12px 0 3px;
+            }
+            
+            .platform-button {
+                padding: 10px 4px;
+                font-size: 0.8rem;
+                gap: 4px;
+            }
+            
+            .platform-button i {
+                font-size: 0.9rem;
+            }
+            
+            .info-text {
+                margin-top: 15px;
+                padding: 10px;
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* Very small devices */
+        @media (max-width: 360px) {
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .platform-button {
+                font-size: 0.75rem;
+            }
+            
+            .platform-button i {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -294,15 +389,15 @@
                 <i class="fas fa-paw"></i>
             </div>
             <h1>WOLFBOT</h1>
-            <p class="subtitle">
-                Advanced Bot by Silent Wolf
-            </p>
+            <div class="subtitle">
+                Advanced WhatsApp Bot by Silent Wolf
+            </div>
         </div>
         
         <div class="deploy-card">
             <div class="card-header">
-                <h2>Deploy Options</h2>
-                <p>Enter your GitHub username then choose platform</p>
+                <h2>Deploy</h2>
+                <p>Choose your platform</p>
             </div>
             
             <form id="deployForm">
@@ -314,7 +409,7 @@
                         <input 
                             type="text" 
                             id="githubUsername" 
-                            placeholder="Enter your GitHub username..."
+                            placeholder="Enter your username..."
                             required
                         />
                         <div class="github-icon">
@@ -323,23 +418,39 @@
                     </div>
                 </div>
                 
-                <!-- Dual button group -->
-                <div class="button-group">
-                    <button type="submit" class="deploy-button heroku-btn" id="deployHerokuBtn" data-platform="heroku">
-                        <i class="fab fa-heroku heroku-icon"></i>
-                        Deploy on Heroku
+                <div class="platform-grid">
+                    <button type="submit" class="platform-button heroku-btn" id="deployHerokuBtn" data-platform="heroku">
+                        <i class="fab fa-heroku"></i>
+                        <span>Heroku</span>
                     </button>
-                    <button type="submit" class="deploy-button wolfhost-btn" id="deployWolfHostBtn" data-platform="wolfhost">
-                        <i class="fas fa-cloud-upload-alt wolf-icon-btn"></i>
-                        Deploy on WolfHost
+                    
+                    <button type="submit" class="platform-button wolfhost-btn" id="deployWolfHostBtn" data-platform="wolfhost">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>WolfHost</span>
+                    </button>
+                    
+                    <button type="submit" class="platform-button railway-btn" id="deployRailwayBtn" data-platform="railway">
+                        <i class="fas fa-train"></i>
+                        <span>Railway</span>
+                    </button>
+                    
+                    <button type="submit" class="platform-button render-btn" id="deployRenderBtn" data-platform="render">
+                        <i class="fas fa-cloud-sun"></i>
+                        <span>Render</span>
+                    </button>
+                    
+                    <button type="submit" class="platform-button replit-btn" id="deployReplitBtn" data-platform="replit">
+                        <i class="fas fa-code"></i>
+                        <span>Replit</span>
                     </button>
                 </div>
             </form>
             
-            <p class="info-text">
-                After submitting, you'll be redirected to the chosen platform to complete deployment.
-                Deployment typically takes 2-3 minutes.
-            </p>
+            <div class="info-text">
+                <i class="fas fa-info-circle"></i> Set <strong>SESSION_ID</strong> in environment variables after redirect.
+                <br>
+                <i class="fas fa-clock"></i> Deployment takes 2-3 minutes.
+            </div>
         </div>
     </div>
 
@@ -347,46 +458,64 @@
         // Create floating particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = Math.min(30, Math.floor(window.innerWidth / 25));
+            const particleCount = Math.min(20, Math.floor(window.innerWidth / 30));
             particlesContainer.innerHTML = '';
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                particle.style.left = `${x}%`;
-                particle.style.top = `${y}%`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
                 
-                const size = 3 + Math.random() * 5;
+                const size = 2 + Math.random() * 4;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
-                particle.style.opacity = 0.1 + Math.random() * 0.4;
+                particle.style.opacity = 0.1 + Math.random() * 0.3;
                 
-                const delay = Math.random() * 20;
-                const duration = 15 + Math.random() * 25;
-                particle.style.animationDelay = `${delay}s`;
-                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${Math.random() * 20}s`;
+                particle.style.animationDuration = `${15 + Math.random() * 20}s`;
                 
                 particlesContainer.appendChild(particle);
             }
         }
 
-        // Handle form submission for both buttons
+        // Get form elements
         const form = document.getElementById('deployForm');
-        const herokuBtn = document.getElementById('deployHerokuBtn');
-        const wolfhostBtn = document.getElementById('deployWolfHostBtn');
         const usernameInput = document.getElementById('githubUsername');
         
-        // Store username in localStorage on input change (optional, kept for convenience)
+        // Platform buttons
+        const herokuBtn = document.getElementById('deployHerokuBtn');
+        const wolfhostBtn = document.getElementById('deployWolfHostBtn');
+        const railwayBtn = document.getElementById('deployRailwayBtn');
+        const renderBtn = document.getElementById('deployRenderBtn');
+        const replitBtn = document.getElementById('deployReplitBtn');
+        
+        const allButtons = [herokuBtn, wolfhostBtn, railwayBtn, renderBtn, replitBtn];
+
+        // Load saved username
+        const savedUsername = localStorage.getItem('wolfbot_github_username');
+        if (savedUsername) {
+            usernameInput.value = savedUsername;
+        }
+
+        // Save username on input
         usernameInput.addEventListener('input', function() {
-            // just update storage but not required for redirect
+            localStorage.setItem('wolfbot_github_username', this.value.trim());
         });
 
-        // Function to handle platform deployment
+        // Platform URLs
+        const platformUrls = {
+            heroku: 'https://heroku.com/deploy?template=https://github.com/7silent-wolf/silentwolf',
+            wolfhost: 'https://host.xwolf.space',
+            railway: 'https://railway.app/new/template?template=https://github.com/7silent-wolf/silentwolf',
+            render: 'https://render.com/deploy?repo=https://github.com/7silent-wolf/silentwolf',
+            replit: 'https://replit.com/github/7silent-wolf/silentwolf'
+        };
+
+        // Handle platform deployment
         function handleDeploy(platform, event) {
-            event.preventDefault(); // Prevent actual form submission
+            event.preventDefault();
             
             const username = usernameInput.value.trim();
             
@@ -395,61 +524,34 @@
                 return;
             }
 
-            // Store username in localStorage
-            localStorage.setItem('wolfbot_github_username', username);
+            // Disable all buttons
+            allButtons.forEach(btn => btn.disabled = true);
             
-            // Disable both buttons and show loading on the clicked one
-            const clickedButton = (platform === 'heroku') ? herokuBtn : wolfhostBtn;
-            const otherButton = (platform === 'heroku') ? wolfhostBtn : herokuBtn;
-            
-            clickedButton.disabled = true;
-            otherButton.disabled = true;
-            
-            // Preserve original content to restore if needed? Not necessary as redirect happens.
-            // But we change only clicked button text for feedback.
+            // Show loading on clicked button
+            const clickedButton = event.target.closest('button');
             const originalContent = clickedButton.innerHTML;
-            if (platform === 'heroku') {
-                clickedButton.innerHTML = '<i class="fab fa-heroku heroku-icon fa-spin"></i> Redirecting...';
-            } else {
-                clickedButton.innerHTML = '<i class="fas fa-cloud-upload-alt wolf-icon-btn fa-spin"></i> Redirecting...';
-            }
             
-            // Redirect based on platform
+            clickedButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Redirecting...`;
+            
+            // Redirect after short delay
             setTimeout(() => {
-                if (platform === 'heroku') {
-                    // Original Heroku redirect
-                    window.location.href = 'https://heroku.com/deploy?template=https://github.com/7silent-wolf/silentwolf.git';
-                } else {
-                    // WolfHost redirect
-                    window.location.href = 'https://host.xwolf.space';
-                }
-            }, 1000); // Short delay for user to see feedback
+                window.location.href = platformUrls[platform];
+            }, 800);
         }
 
         // Attach event listeners
-        herokuBtn.addEventListener('click', function(e) {
-            handleDeploy('heroku', e);
-        });
-        
-        wolfhostBtn.addEventListener('click', function(e) {
-            handleDeploy('wolfhost', e);
-        });
+        herokuBtn.addEventListener('click', (e) => handleDeploy('heroku', e));
+        wolfhostBtn.addEventListener('click', (e) => handleDeploy('wolfhost', e));
+        railwayBtn.addEventListener('click', (e) => handleDeploy('railway', e));
+        renderBtn.addEventListener('click', (e) => handleDeploy('render', e));
+        replitBtn.addEventListener('click', (e) => handleDeploy('replit', e));
 
-        // Prevent default form submission entirely (no page reload)
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Do nothing extra, buttons handle separately
-        });
+        // Prevent default form submission
+        form.addEventListener('submit', (e) => e.preventDefault());
 
         // Initialize particles
         createParticles();
         window.addEventListener('resize', createParticles);
-        
-        // Pre-fill username if previously entered
-        const savedUsername = localStorage.getItem('wolfbot_github_username');
-        if (savedUsername) {
-            usernameInput.value = savedUsername;
-        }
     </script>
 </body>
 </html>
